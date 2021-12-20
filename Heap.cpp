@@ -18,6 +18,11 @@ void ABCHeap::fixHeap(int node) {
 	}
 }
 
+//	JUNK DO NOT USE
+bool ABCHeap::compare(dataType a, dataType b) {
+	return true;
+}
+
 void ABCHeap::swap(dataType& a, dataType& b){
 	
 	dataType temp = a;
@@ -37,6 +42,12 @@ ABCHeap::~ABCHeap() {
 	}
 }
 
+void ABCHeap::init(const int max) {
+	maxSize = max;
+	heapSize = 0;
+	allocated = true;
+	data = new dataType[max];
+}
 
 void ABCHeap::insert(dataType item) {
 	if (allocated) {
@@ -56,7 +67,7 @@ void ABCHeap::insert(dataType item) {
 }
 
 dataType ABCHeap::head() {
-	if (allocated == 1)
+	if (allocated == true)
 		return data[0];
 	else
 		return dataType();

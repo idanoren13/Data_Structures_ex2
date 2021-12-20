@@ -1,14 +1,15 @@
 #pragma once
 #include "Heap.h"
 class maxHeap :
-    protected ABCHeap
+    public ABCHeap
 {
 private:
 	bool compare(dataType a, dataType b);
 public:
+	maxHeap() :
+		ABCHeap() {};
 	maxHeap(int max) :
 		ABCHeap(max) {};
-	~maxHeap();
 	dataType max();
 	dataType deleteMax();
 };

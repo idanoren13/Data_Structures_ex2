@@ -140,16 +140,20 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="dataType.cpp" />
+    <ClCompile Include="FourHeapADT.cpp" />
     <ClCompile Include="Heap.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="maxHeap.cpp" />
     <ClCompile Include="minHeap.cpp" />
+    <ClCompile Include="run.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="dataType.h" />
+    <ClInclude Include="FourHeapADT.h" />
     <ClInclude Include="Heap.h" />
     <ClInclude Include="maxHeap.h" />
     <ClInclude Include="minHeap.h" />
+    <ClInclude Include="run.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

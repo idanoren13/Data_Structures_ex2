@@ -18,16 +18,18 @@ private:
 	void swap(dataType& a, dataType& b);
 
 public:
+	ABCHeap():
+		maxSize(0), heapSize(0), allocated(false) {
+		data = nullptr;
+	}
 	ABCHeap(int max):
 		maxSize(max), heapSize(0), allocated(true){ data = new dataType[max]; }
 	~ABCHeap();
-
+	void init(const int max);
+	int getHeapSize() { return heapSize; }
 	void insert(dataType item);
 	dataType head();
 	dataType deleteHead();
-
-	
-	
 };
 
 

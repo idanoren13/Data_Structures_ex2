@@ -1,15 +1,17 @@
 #pragma once
 #include "Heap.h"
 class minHeap :
-    protected ABCHeap
+    public ABCHeap
 {
 private:
 	bool compare(dataType a, dataType b);
 public:
+	minHeap():
+		ABCHeap() {};
 	minHeap(int max) :
 		ABCHeap(max) {};
-	~minHeap();
-	dataType max();
-	dataType deleteMax();
+
+	dataType min();
+	dataType deleteMin();
 };
 
