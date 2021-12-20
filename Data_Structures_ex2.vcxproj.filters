@@ -24,12 +24,24 @@
     <ClCompile Include="dataType.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="maxHeap.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="minHeap.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Heap.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="dataType.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="maxHeap.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="minHeap.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

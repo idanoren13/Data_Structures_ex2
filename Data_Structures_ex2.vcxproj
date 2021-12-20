@@ -142,10 +142,14 @@
     <ClCompile Include="dataType.cpp" />
     <ClCompile Include="Heap.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="maxHeap.cpp" />
+    <ClCompile Include="minHeap.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="dataType.h" />
     <ClInclude Include="Heap.h" />
+    <ClInclude Include="maxHeap.h" />
+    <ClInclude Include="minHeap.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
