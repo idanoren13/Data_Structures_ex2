@@ -6,13 +6,14 @@ private:
 	int priority;
 	std::string str;
 	dataType* twin;
+	int myIndex;
 public:
 	dataType() :
-		priority(0), str(""), twin(nullptr) {};
+		priority(0), str(""), twin(nullptr), myIndex(-1) {};
 	dataType(int a, std::string s) :
-		priority(a), str(s), twin(nullptr) {};
+		priority(a), str(s), twin(nullptr), myIndex(-1) {};
 	dataType(int a, std::string s, dataType* t) :
-		priority(a), str(s), twin(t) {};
+		priority(a), str(s), twin(t), myIndex(-1) {};
 	dataType(const dataType& _dt);
 	dataType(dataType* _dt);
 
@@ -23,7 +24,8 @@ public:
 
 	void setPriority(int _p) { priority = _p; }
 	void setTwin(dataType* _t) { twin = _t; }
-
+	int getIndex() { return myIndex; }
+	void setIndex(int _i) { myIndex = _i; }
 	void printDataType();
 };
 

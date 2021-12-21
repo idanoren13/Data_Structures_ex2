@@ -4,12 +4,12 @@ class maxHeap :
     public ABCHeap
 {
 private:
-	virtual bool compare(dataType a, dataType b);
+	virtual bool compare(dataType* a, dataType* b);
 public:
-	maxHeap() :
+	maxHeap():
 		ABCHeap() {};
-	maxHeap(int max) :
-		ABCHeap(max) {};
+	//maxHeap(int max):
+	//	ABCHeap(max) {};
 	dataType* max();
 	dataType* deleteMax();
 };

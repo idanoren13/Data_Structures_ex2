@@ -5,44 +5,45 @@ void ABCHeap::fixHeap(int node) {
 	int left = Left(node);
 	int right = Right(node);
 
-	if (left < heapSize && compare(*data[left], *data[node]))
+	if (left < heapSize && compare(data[left], data[node]))
 		m = left;
 	else
 		m = node;
-	if (right < heapSize && compare(*data[right], *data[node]))
+	if (right < heapSize && compare(data[right], data[node]))
 		m = right;
 
 	if (m != node) {
-		swap(*data[node], *data[m]);
+		swap(data[node], data[m]);
 		fixHeap(m);
 	}
 }
-void ABCHeap::fixUpstream(dataType* Node) {//TODO
-    int i = heapSize;
-	heapSize++;
-
-    while (i > 0 && !compare(*data[Parent(i)],*Node)) {
-        data[i] = data[Parent(i)];
-        i = Parent(i);
-    }
-	data[i] = Node;
+void ABCHeap::fixUpstream(int index) {
+	int i = index;
+	if (data[i] != nullptr) {
+		while (i > 0 && !compare(data[Parent(i)], data[i])) {
+			swap(data[i], data[Parent(i)]);
+			i = Parent(i);
+		}
+	}
 }
 
 //****	JUNK DO NOT USE
-bool ABCHeap::compare(dataType a, dataType b) {
-	return true;
-}
+//bool ABCHeap::compare(dataType* a, dataType* b) {
+//	return true;
+//}
 //****
 
-void ABCHeap::swap(dataType& a, dataType& b){
-	
-	dataType temp = a;
+void ABCHeap::swap(dataType* & a, dataType* & b){
+	int temp_idx = b->getIndex();
+	dataType* temp = a;
 	a = b;
 	b = temp;
-
-	dataType* p = a.getTwin()->getTwin();
-	a.getTwin()->setTwin(b.getTwin());
-	b.getTwin()->setTwin(p);
+	//b->getTwin()->setTwin(temp->getTwin());
+	a->setIndex(b->getIndex());
+	b->setIndex(temp_idx);
+	//dataType* p = a->getTwin()->getTwin();
+	//a->getTwin()->setTwin(a);
+	//b->getTwin()->setTwin(b);
 
 }
 
@@ -68,11 +69,15 @@ void ABCHeap::insert(dataType* item) {
 			throw 1000;//error: heap is in max size
 		int i = heapSize;
 		heapSize++;
-		while (i>0 && !compare(*data[Parent(i)],*item)){
-			data[i] = data[Parent(i)];
+		data[i] = item;
+		data[i]->setIndex(i);
+		//data[i]->getTwin()->setTwin(data[i]);
+		while (i>0 && !compare(data[Parent(i)], data[i])){
+			swap(data[i], data[Parent(i)]);
+			//data[i] = data[Parent(i)];
 			i = Parent(i);
 		}
-		data[i] = item;
+		//data[i]->setIndex(i);
 	}
 	else {
 		throw 1001; //error: heap is not allocated
@@ -90,52 +95,21 @@ dataType* ABCHeap::deleteHead() {
 	if (heapSize < 1)
 		throw 1002;	//error: heap is empty
 	dataType* head = data[0];
-	//head->setTwin(nullptr);
+	swap(data[0], data[heapSize - 1]);
+	data[heapSize - 1] = nullptr;
 	heapSize--;
-	data[0] = data[heapSize];
+	//data[0] = data[heapSize];
 	fixHeap(0);
 	return head;
 }
 
 /*save node index for the fixUpsstream*/
-void ABCHeap::deleteLeaf(dataType* node) {
-	dataType* ptr = data[heapSize - 1];
-	int node_index = ((int)(&node) - (int)(&data[0])) / sizeof(dataType*);
-	if (ptr != node) {
-		swap(*node, *ptr);
-		data[heapSize - 1] = nullptr;
-		heapSize--;
-		fixUpstream(data[node_index]);
-	}
-	else {
-		data[heapSize - 1] = nullptr;
-		heapSize--;		
-	}
-}
-/*
-void sift(int arr[]);
-{
-    int r;
-    for (r = 1; r <= n / 2; ) {
-        if (2r = = n) {
-            if (arr[r] > arr[2 * r])
-                swap(r, 2 * r);
-            break;
-        }
-        else {
-            if (arr[r] > arr[2 * r] && arr[2 * r] <= arr[2 * r + 1]) {
-                swap(r, 2 * r);
-                r *= 2;
-            }
-            else if (arr[r] > arr[2 * r + 1] && arr[2 * r + 1] <= arr[2 * r]) {
-                swap(r, 2 * r + 1);
-                r* = 2 * r + 1;
-            }
-            else
-                break;
-        }
-    }
+void ABCHeap::deleteLeaf(int index) {
+	int temp = index;
+	swap(data[index], data[heapSize - 1]);
+	data[heapSize - 1] = nullptr;
+	heapSize--;
+	fixUpstream(index);
 }
 
 
-*/

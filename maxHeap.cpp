@@ -1,8 +1,8 @@
 #include "maxHeap.h"
 
 
-bool maxHeap::compare(dataType a, dataType b) {
-	return a.getPriority() >= b.getPriority();
+bool maxHeap::compare(dataType* a, dataType* b) {
+	return a->getPriority() >= b->getPriority();
 }
 
 dataType* maxHeap::max() {

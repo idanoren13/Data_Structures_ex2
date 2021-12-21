@@ -4,13 +4,12 @@ class minHeap :
     public ABCHeap
 {
 private:
-	virtual bool compare(dataType a, dataType b);
+	virtual bool compare(dataType* a, dataType* b);
 public:
 	minHeap():
 		ABCHeap() {};
-	minHeap(int max) :
-		ABCHeap(max) {};
-
+	//minHeap(int max):
+	//	ABCHeap(max) {};
 	dataType* min();
 	dataType* deleteMin();
 };
