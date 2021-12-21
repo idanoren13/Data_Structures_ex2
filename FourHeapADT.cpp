@@ -1,15 +1,20 @@
-#include "FourHeapADT.h"
+    #include "FourHeapADT.h"
 
 //private
 
-void FourHeapADT::fix_move()
-{
+void FourHeapADT::fix_move() {
+    dataType res;
     if ((total_min.getHeapSize() - total_max.getHeapSize()) > 1)   {
-        total_max.insert(median_min.deleteMin());
-
+        res = median_max.deleteMax();
+        total_max.deleteLeaf(res.getTwin());
+        res.setTwin(nullptr);
+        total_max.insert(res);    
     }
     else if ((total_max.getHeapSize() - total_min.getHeapSize()) > 1)  {
-        total_min.insert(median_max.deleteMax());
+        res = median_min.deleteMin();
+        total_min.deleteLeaf(res.getTwin());
+        res.setTwin(nullptr);
+        total_min.insert(res);
     }
 }
 
@@ -41,6 +46,7 @@ void FourHeapADT::insert(int priority, std::string value) {
     dataType data_twin = data;
     data.setTwin(&data_twin);
     data_twin.setTwin(&data);
+    //check size
     if (data.getPriority() > median().getPriority()) {
         total_max.insert(data);
         median_max.insert(data_twin);//TODO-YARDEN

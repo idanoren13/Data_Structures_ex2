@@ -13,7 +13,7 @@ public:
 		priority(a), str(s), twin(nullptr) {};
 	dataType(int a, std::string s, dataType* t) :
 		priority(a), str(s), twin(t) {};
-	//dataType(dataType& _dt);
+	dataType(const dataType& _dt);
 	
 	int getPriority() { return priority; }
 	dataType* getTwin() { return twin; }

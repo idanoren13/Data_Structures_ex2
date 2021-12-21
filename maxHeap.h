@@ -4,7 +4,7 @@ class maxHeap :
     public ABCHeap
 {
 private:
-	bool compare(dataType a, dataType b);
+	virtual bool compare(dataType a, dataType b);
 public:
 	maxHeap() :
 		ABCHeap() {};

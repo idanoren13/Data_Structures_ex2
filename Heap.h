@@ -14,7 +14,7 @@ private:
 
 	void fixHeap(int Node);
 
-	bool compare(dataType a,dataType b);
+	virtual bool compare(dataType a,dataType b);
 	void swap(dataType& a, dataType& b);
 
 public:
