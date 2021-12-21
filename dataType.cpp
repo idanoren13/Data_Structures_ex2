@@ -9,3 +9,9 @@ dataType::dataType(const dataType& _dt) {
 	str = _dt.str;
 	twin = _dt.twin;
 }
+
+dataType::dataType(dataType* _dt) {
+	priority = _dt->priority;
+	str = _dt->str;
+	twin = _dt->twin;
+}

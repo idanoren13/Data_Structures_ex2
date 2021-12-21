@@ -16,7 +16,7 @@ void run::runADT(){
 			if (ch == 'f') {
 				std::cin >> priority; 
 				std::cin >> input;//move to f with try catch
-			}
+			}//NOT HERE-YARDEN 
 
 			if (i == 0 && ch != 'e')
 				throw 2;
@@ -58,7 +58,7 @@ void run::runADT(){
 			}
 			case 'f':
 			{
-				//std::cin >> priority;//(try and catch) 
+				//std::cin >> priority;//(try and catch) -TODO
 				//std::cin >> input;//(try and catch)
 				ADT.insert(priority, input);
 				break;

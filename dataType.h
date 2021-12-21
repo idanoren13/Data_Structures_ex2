@@ -14,7 +14,9 @@ public:
 	dataType(int a, std::string s, dataType* t) :
 		priority(a), str(s), twin(t) {};
 	dataType(const dataType& _dt);
-	
+	dataType(dataType* _dt);
+
+
 	int getPriority() { return priority; }
 	dataType* getTwin() { return twin; }
 	std::string getString() { return str; }

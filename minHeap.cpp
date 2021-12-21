@@ -4,10 +4,10 @@ bool minHeap::compare(dataType a, dataType b) {
 	return a.getPriority() <= b.getPriority();
 }
 
-dataType minHeap::min() {
+dataType* minHeap::min() {
 	return head();
 }
 
-dataType minHeap::deleteMin() {
+dataType* minHeap::deleteMin() {
 	return deleteHead();
 }

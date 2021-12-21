@@ -4,7 +4,7 @@
 class ABCHeap
 {
 private:
-	dataType* data;
+	dataType** data;
 	int maxSize;
 	int heapSize;
 	bool allocated;
@@ -13,23 +13,25 @@ private:
 	static int Parent(int node) { return (node-1)/2; } 
 
 	void fixHeap(int Node);
-
+	void fixUpstream(dataType* Node);
 	virtual bool compare(dataType a,dataType b);
 	void swap(dataType& a, dataType& b);
 
 public:
 	ABCHeap():
-		maxSize(0), heapSize(0), allocated(false) {
-		data = nullptr;
-	}
+		maxSize(0), heapSize(0), allocated(false) {	data = nullptr;	}
 	ABCHeap(int max):
-		maxSize(max), heapSize(0), allocated(true){ data = new dataType[max]; }
+		maxSize(max), heapSize(0), allocated(true) {
+		data = new dataType * [max]; 
+		for (int i = 0; i < max; i++)
+			data[i] = nullptr;
+	}
 	~ABCHeap();
 	void init(const int max);
 	int getHeapSize() { return heapSize; }
-	void insert(dataType item);
-	dataType head();
-	dataType deleteHead();
+	void insert(dataType* item);
+	dataType* head();
+	dataType* deleteHead();
 
 	void deleteLeaf(dataType* node);
 };

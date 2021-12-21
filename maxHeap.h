@@ -10,7 +10,7 @@ public:
 		ABCHeap() {};
 	maxHeap(int max) :
 		ABCHeap(max) {};
-	dataType max();
-	dataType deleteMax();
+	dataType* max();
+	dataType* deleteMax();
 };
 

@@ -5,21 +5,23 @@ class FourHeapADT
 {
 private:
     const int SIZE = 100;
-    maxHeap total_max, median_max;
-    minHeap total_min, median_min;
+    maxHeap total_max_a, median_max_b;
+    minHeap total_min_b, median_min_a;
     /*  total_max and median_min are twins
     *   total_min and median_max are twins
     */
+    int ADT_size;
     void fix_move();
     
 public:
-    dataType Max(){ return (total_max.max());   }
-    dataType Min(){ return (total_min.min());   }
-    dataType median(){ return (median_max.max()); }
+    dataType Max(){ return *(total_max_a.max());   }
+    dataType Min(){ return *(total_min_b.min());   }
+    dataType median(){ return *(median_max_b.max()); }
     void CreateEmpty();
     void insert(int priority, std::string value);
     dataType deleteMax();
     dataType deleteMin();
+
 };
 
 /* PASTE HEAR!!!
@@ -44,7 +46,7 @@ public:
     MyClass();
     int Max();
     int Min();
-    int median();
+    int median(); 
     void CreateEmpty();
     void Insert(int priority, String value);
     void fix_move();

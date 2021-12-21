@@ -5,10 +5,10 @@ bool maxHeap::compare(dataType a, dataType b) {
 	return a.getPriority() >= b.getPriority();
 }
 
-dataType maxHeap::max() {
+dataType* maxHeap::max() {
 	return head();
 }
 
-dataType maxHeap::deleteMax() {
+dataType* maxHeap::deleteMax() {
 	return deleteHead();
 }
