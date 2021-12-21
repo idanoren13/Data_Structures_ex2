@@ -3,7 +3,8 @@
 
 //public
 void run::runADT(){
-	
+	input_str = "";
+	std::string token, read_s;
 	try
 	{
 		if (n == 0)
@@ -13,15 +14,12 @@ void run::runADT(){
 
 		for (int i = 0; i < n; i++) {
 			std::cin >> ch;
-			if (ch == 'f') {
-				std::cin >> priority; 
-				std::cin >> input;//move to f with try catch
-			}//NOT HERE-YARDEN 
 
 			if (i == 0 && ch != 'e')
 				throw 2;
 			if (ch == '\n')
 				throw 3;
+
 			switch (ch) {
 			case 'a':
 			{
@@ -58,16 +56,20 @@ void run::runADT(){
 			}
 			case 'f':
 			{
-				//std::cin >> priority;//(try and catch) -TODO
-				//std::cin >> input;//(try and catch)
-				ADT.insert(priority, input);
+				std::cin >> priority;
+				std::getline(std::cin >> std::ws, read_s);
+				std::istringstream s(read_s);
+				while (s >> token) {
+					input_str.append(token);
+				}
+				ADT.insert(priority, input_str);
+				input_str = "";
 				break;
 			}
 			case 'g':
 			{
-				ADT.median();
+				res = ADT.median();
 				res.printDataType();
-
 				break;
 			}
 			default:
@@ -78,6 +80,7 @@ void run::runADT(){
 	}
 	catch (const int n) {
 		std::cout << "wrong input" << std::endl;
+
 	}
 }
 

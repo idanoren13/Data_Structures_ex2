@@ -14,7 +14,7 @@ void FourHeapADT::fix_move() {
         median_min_a.insert(res_twin);
 
     }
-    else if ((total_max_a.getHeapSize() - total_min_b.getHeapSize()) > 1)  {
+    else if ((total_max_a.getHeapSize() - total_min_b.getHeapSize()) >= 1)  {
         res = median_min_a.deleteMin();
         total_max_a.deleteLeaf(res->getTwin()->getIndex());
        // res->setTwin(nullptr);
@@ -25,6 +25,32 @@ void FourHeapADT::fix_move() {
 }
 
 //public
+
+dataType FourHeapADT::Max() {
+    if ((ADT_size >= 1 && total_max_a.getHeapSize() >= 1))
+        return *(total_max_a.max());
+    else if (ADT_size == 1 && median_max_b.getHeapSize() == 1)
+        return *(median_max_b.max());
+    else
+        throw 105;//error: corrupt ADT
+}
+dataType FourHeapADT::Min() {
+    if ((ADT_size >= 1 && total_min_b.getHeapSize() >= 1))
+        return *(total_min_b.min());     
+    else if (ADT_size == 1 && median_min_a.getHeapSize() == 1)
+        return *(median_min_a.min());
+    else
+        throw 105;//error: corrupt ADT
+}
+dataType FourHeapADT::median() { 
+    if ((ADT_size >= 1 && median_max_b.getHeapSize() >= 1))
+        return *(median_max_b.max());
+    else if (ADT_size == 1 && total_max_a.getHeapSize() == 1)
+        return *(total_max_a.max());
+    else
+        throw 105;//error: corrupt ADT
+}
+
 
 void FourHeapADT::CreateEmpty() {
     total_max_a.init(SIZE);
