@@ -25,7 +25,6 @@ void run::runADT(){
 			{
 				res = ADT.Max();
 				res.printDataType();
-
 				break;
 			}
 			case 'b':
@@ -57,11 +56,7 @@ void run::runADT(){
 			case 'f':
 			{
 				std::cin >> priority;
-				std::getline(std::cin >> std::ws, read_s);
-				std::istringstream s(read_s);
-				while (s >> token) {
-					input_str.append(token);
-				}
+				std::getline(std::cin, input_str);
 				ADT.insert(priority, input_str);
 				input_str = "";
 				break;
