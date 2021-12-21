@@ -30,6 +30,8 @@ public:
 	void insert(dataType item);
 	dataType head();
 	dataType deleteHead();
+
+	void deleteLeaf(dataType* node);
 };
 
 

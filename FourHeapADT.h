@@ -7,7 +7,9 @@ private:
     const int SIZE = 100;
     maxHeap total_max, median_max;
     minHeap total_min, median_min;
-    
+    /*  total_max and median_min are twins
+    *   total_min and median_max are twins
+    */
     void fix_move();
     
 public:

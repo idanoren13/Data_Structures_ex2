@@ -18,10 +18,11 @@ void ABCHeap::fixHeap(int node) {
 	}
 }
 
-//	JUNK DO NOT USE
+//****	JUNK DO NOT USE
 bool ABCHeap::compare(dataType a, dataType b) {
 	return true;
 }
+//****
 
 void ABCHeap::swap(dataType& a, dataType& b){
 	
@@ -77,8 +78,14 @@ dataType ABCHeap::deleteHead() {
 	if (heapSize < 1)
 		throw 1002;	//error: heap is empty
 	dataType head = data[0];
+	head.setTwin(nullptr);
 	heapSize--;
 	data[0] = data[heapSize];
 	fixHeap(0);
 	return head;
+}
+
+void ABCHeap::deleteLeaf(dataType* node) {
+	swap(*node, data[heapSize - 1]);
+	heapSize--;
 }
