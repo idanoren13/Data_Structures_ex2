@@ -15,7 +15,7 @@ private:
 	void fixHeap(int Node);
 	void fixUpstream(dataType* Node);
 	virtual bool compare(dataType a,dataType b);
-	void swap(dataType& a, dataType& b);
+	void swap(dataType* a, dataType* b);
 
 public:
 	ABCHeap():

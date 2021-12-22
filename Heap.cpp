@@ -13,7 +13,7 @@ void ABCHeap::fixHeap(int node) {
 		m = right;
 
 	if (m != node) {
-		swap(*data[node], *data[m]);
+		swap(data[node], data[m]);
 		fixHeap(m);
 	}
 }
@@ -22,7 +22,7 @@ void ABCHeap::fixUpstream(dataType* Node) {//TODO
 	heapSize++;
 
     while (i > 0 && !compare(*data[Parent(i)],*Node)) {
-        data[i] = data[Parent(i)];
+		swap(data[i], data[Parent(i)]);
         i = Parent(i);
     }
 	data[i] = Node;
@@ -34,15 +34,15 @@ bool ABCHeap::compare(dataType a, dataType b) {
 }
 //****
 
-void ABCHeap::swap(dataType& a, dataType& b){
+void ABCHeap::swap(dataType* a, dataType* b){
 	
-	dataType temp = a;
-	a = b;
-	b = temp;
+	dataType* temp = a;
+	*a = *b;
+	*b = *temp;
 
-	dataType* p = a.getTwin()->getTwin();
-	a.getTwin()->setTwin(b.getTwin());
-	b.getTwin()->setTwin(p);
+	dataType* p = (*a).getTwin()->getTwin();
+	(*a).getTwin()->setTwin((*b).getTwin());
+	(*b).getTwin()->setTwin(p);
 
 }
 
@@ -68,8 +68,9 @@ void ABCHeap::insert(dataType* item) {
 			throw 1000;//error: heap is in max size
 		int i = heapSize;
 		heapSize++;
+		data[i] = item;
 		while (i>0 && !compare(*data[Parent(i)],*item)){
-			data[i] = data[Parent(i)];
+			swap(data[i], data[Parent(i)]);
 			i = Parent(i);
 		}
 		data[i] = item;
@@ -100,9 +101,9 @@ dataType* ABCHeap::deleteHead() {
 /*save node index for the fixUpsstream*/
 void ABCHeap::deleteLeaf(dataType* node) {
 	dataType* ptr = data[heapSize - 1];
-	int node_index = ((int)(&node) - (int)(&data[0])) / sizeof(dataType*);
+	int node_index = ((int)(node) - (int)(data[0])) / sizeof(dataType*);
 	if (ptr != node) {
-		swap(*node, *ptr);
+		swap(node, ptr);
 		data[heapSize - 1] = nullptr;
 		heapSize--;
 		fixUpstream(data[node_index]);
