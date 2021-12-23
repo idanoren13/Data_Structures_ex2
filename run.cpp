@@ -4,6 +4,7 @@
 //public
 void run::runADT(){
 	input_str = "";
+	
 	std::string token, read_s;
 	try
 	{
@@ -13,9 +14,9 @@ void run::runADT(){
 			throw 1;//error
 
 		for (int i = 0; i < n; i++) {
-			std::cin >> ch;
-
-			if (i == 0 && ch != 'e')
+			std::cin >> ch;//get from the user the type of operation
+			
+			if (i == 0 && ch != 'e')//it must start with 'e'
 				throw 2;
 			if (ch == '\n')
 				throw 3;
@@ -67,6 +68,8 @@ void run::runADT(){
 				res.printDataType();
 				break;
 			}
+			case '\n':
+				throw 5;
 			default:
 				throw 5; //error
 			}
@@ -75,7 +78,6 @@ void run::runADT(){
 	}
 	catch (const int n) {
 		std::cout << "wrong input" << std::endl;
-
 	}
 }
 

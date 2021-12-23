@@ -20,20 +20,20 @@ private:
 public:
 	ABCHeap():
 		maxSize(0), heapSize(0), allocated(false) {	data = nullptr;	}
-	//ABCHeap(int max):
-	//	maxSize(max), heapSize(0), allocated(true) {
-	//	data = new dataType * [max]; 
-	//	for (int i = 0; i < max; i++)
-	//		data[i] = nullptr;
-	//}
 	~ABCHeap();
 	void init(const int max);
 	int getHeapSize() { return heapSize; }
 	void insert(dataType* item);
 	dataType* head();
 	dataType* deleteHead();
-
 	void deleteLeaf(int index);
+
+	void remove(){
+		for (int i = 0; i < heapSize; i++)
+			delete data[i];//free data
+		if (allocated) 
+			delete[] data;
+	}
 };
 
 

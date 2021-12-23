@@ -8,9 +8,8 @@ private:
 public:
 	maxHeap():
 		ABCHeap() {};
-	//maxHeap(int max):
-	//	ABCHeap(max) {};
-	dataType* max();
-	dataType* deleteMax();
+	dataType* max();//return the maximum value
+	dataType* deleteMax();//delete the maximum value
+	
 };
 

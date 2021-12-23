@@ -8,9 +8,7 @@ private:
 public:
 	minHeap():
 		ABCHeap() {};
-	//minHeap(int max):
-	//	ABCHeap(max) {};
-	dataType* min();
-	dataType* deleteMin();
+	dataType* min();//return the minimum value
+	dataType* deleteMin();//delete the minimum value
 };
 

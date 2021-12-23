@@ -8,6 +8,7 @@ private:
 	dataType* twin;
 	int myIndex;
 public:
+	//Constractors//
 	dataType() :
 		priority(0), str(""), twin(nullptr), myIndex(-1) {};
 	dataType(int a, std::string s) :
@@ -21,11 +22,12 @@ public:
 	int getPriority() { return priority; }
 	dataType* getTwin() { return twin; }
 	std::string getString() { return str; }
+	int getIndex() { return myIndex; }
 
 	void setPriority(int _p) { priority = _p; }
 	void setTwin(dataType* _t) { twin = _t; }
-	int getIndex() { return myIndex; }
 	void setIndex(int _i) { myIndex = _i; }
+
 	void printDataType();
 };
 

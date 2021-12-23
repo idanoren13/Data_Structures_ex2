@@ -1,6 +1,6 @@
 #include "Heap.h"
 //private methods
-void ABCHeap::fixHeap(int node) {
+void ABCHeap::fixHeap(int node) {//fixing the heap from top to bottom
 	int m;
 	int left = Left(node);
 	int right = Right(node);
@@ -14,10 +14,10 @@ void ABCHeap::fixHeap(int node) {
 
 	if (m != node) {
 		swap(data[node], data[m]);
-		fixHeap(m);
+		fixHeap(m);//continue until m will be equal to node 
 	}
 }
-void ABCHeap::fixUpstream(int index) {
+void ABCHeap::fixUpstream(int index) {//fixing the heap from bottom up
 	int i = index;
 	if (data[i] != nullptr) {
 		while (i > 0 && !compare(data[Parent(i)], data[i])) {
@@ -26,32 +26,20 @@ void ABCHeap::fixUpstream(int index) {
 		}
 	}
 }
-
-//****	JUNK DO NOT USE
-//bool ABCHeap::compare(dataType* a, dataType* b) {
-//	return true;
-//}
-//****
-
 void ABCHeap::swap(dataType* & a, dataType* & b){
 	int temp_idx = b->getIndex();
 	dataType* temp = a;
 	a = b;
 	b = temp;
-	//b->getTwin()->setTwin(temp->getTwin());
+	//we will return the original indexes that were to a and b
 	a->setIndex(b->getIndex());
 	b->setIndex(temp_idx);
-	//dataType* p = a->getTwin()->getTwin();
-	//a->getTwin()->setTwin(a);
-	//b->getTwin()->setTwin(b);
 
 }
 
 //public methods
 ABCHeap::~ABCHeap() {
-	if (allocated) {
-		delete[] data;
-	}
+	
 }
 
 void ABCHeap::init(const int max) {
@@ -69,15 +57,9 @@ void ABCHeap::insert(dataType* item) {
 			throw 1000;//error: heap is in max size
 		int i = heapSize;
 		heapSize++;
-		data[i] = item;
+		data[i] = item;//we will first enter the new value as a righmost leaf
 		data[i]->setIndex(i);
-		//data[i]->getTwin()->setTwin(data[i]);
-		while (i>0 && !compare(data[Parent(i)], data[i])){
-			swap(data[i], data[Parent(i)]);
-			//data[i] = data[Parent(i)];
-			i = Parent(i);
-		}
-		//data[i]->setIndex(i);
+		fixUpstream(i);// we will make a repair from the bottom up
 	}
 	else {
 		throw 1001; //error: heap is not allocated
@@ -94,22 +76,25 @@ dataType* ABCHeap::head() {
 dataType* ABCHeap::deleteHead() {
 	if (heapSize < 1)
 		throw 1002;	//error: heap is empty
-	dataType* head = data[0];
-	swap(data[0], data[heapSize - 1]);
+	dataType* head =data[0];//save for return
+	swap(data[0], data[heapSize - 1]);//we will swap between the head and the righmost leaf
 	data[heapSize - 1] = nullptr;
 	heapSize--;
-	//data[0] = data[heapSize];
-	fixHeap(0);
+	fixHeap(0);// we will make a repair from the top to bottom
 	return head;
 }
 
-/*save node index for the fixUpsstream*/
+/*1. save node index for the fixUpsstream
+  2. we will swap between the relevant item we want to delete and the righmost leaf
+  3. put null in the rightmost leaf(after getting the value of the item we wanted to delete)
+  4. makes fix(bottom to top)
+*/
 void ABCHeap::deleteLeaf(int index) {
-	int temp = index;
-	swap(data[index], data[heapSize - 1]);
-	data[heapSize - 1] = nullptr;
+	int temp = index;//1
+	swap(data[index], data[heapSize - 1]);//2
+	data[heapSize - 1] = nullptr;//3
 	heapSize--;
-	fixUpstream(index);
+	fixUpstream(index);//4
 }
 
 
