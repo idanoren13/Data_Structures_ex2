@@ -4,7 +4,7 @@
 //public
 void run::runADT(){
 	input_str = "";
-	
+	char blac;
 	std::string token, read_s;
 	try
 	{
@@ -12,14 +12,21 @@ void run::runADT(){
 			std::cin >> n;
 		if (n < 1)
 			throw 1;//error
-
+		
+			std::cin.ignore(1, '\n');
 		for (int i = 0; i < n; i++) {
-			std::cin >> ch;//get from the user the type of operation
-			
+
+			std::cout << std::flush;
+			std::getline(std::cin, read_s);
+
+			if (read_s == "")
+				throw 3;
+			std::istringstream iss(read_s);
+			iss >> token;
+			ch = token[0];
+
 			if (i == 0 && ch != 'e')//it must start with 'e'
 				throw 2;
-			if (ch == '\n')
-				throw 3;
 
 			switch (ch) {
 			case 'a':
@@ -56,8 +63,16 @@ void run::runADT(){
 			}
 			case 'f':
 			{
-				std::cin >> priority;
-				std::getline(std::cin, input_str);
+				if (iss >> token)
+					priority = std::stoi(token);
+				else throw 7;
+				if (iss >> token)
+					input_str.append(token);
+				else throw 8;
+				token = "";
+				std::getline(iss, token); 
+				input_str.append(token);
+
 				ADT.insert(priority, input_str);
 				input_str = "";
 				break;
@@ -68,13 +83,13 @@ void run::runADT(){
 				res.printDataType();
 				break;
 			}
-			case '\n':
-				throw 5;
 			default:
 				throw 5; //error
 			}
 		}
-		
+		std::getline(std::cin, read_s);
+		if (read_s.size() != 0)
+			throw 6;
 	}
 	catch (const int n) {
 		std::cout << "wrong input" << std::endl;
